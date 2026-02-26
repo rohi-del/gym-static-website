@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         SERVER_IP = '172.31.26.189'
-        SSH_CREDENTIAL = 'gym-key' // Make sure Jenkins Credentials ID is exactly this
+        SSH_CREDENTIAL = 'gym-key' 
         REPO_URL = 'https://github.com/rohi-del/gym-static-website.git'
         BRANCH = 'main'
         REMOTE_USER = 'ubuntu'
@@ -11,14 +11,14 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // checkout scm use karna better practice hai declarative pipeline mein
+                
                 git branch: "${BRANCH}", url: "${REPO_URL}"
             }
         }
         
         stage('Deploy to Target Server') {
             steps {
-                // Yahan quotes hata diye hain variable se
+               
                 sshagent([SSH_CREDENTIAL]) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} 'sudo mkdir -p ${REMOTE_PATH} && sudo chown -R ${REMOTE_USER}:${REMOTE_USER} ${REMOTE_PATH}'
