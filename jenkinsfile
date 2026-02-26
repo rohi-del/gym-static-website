@@ -28,10 +28,10 @@ pipeline {
             }
         }
 
-        stage('Restart apache2') {
+        stage('Restart nginx') {
             steps {
                 sshagent([SSH_CREDENTIAL]) {
-                    sh "ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} 'sudo systemctl restart apache2'"
+                    sh "ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} 'sudo systemctl restart nginx'"
                 }
             }
         }
