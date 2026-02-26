@@ -1,9 +1,9 @@
 pipeline {
      agent any
              environment {
-                SERVER_IP = '172.31.1.200'
+                SERVER_IP = '172.31.26.189'
                 SSH_CREDENTIAL = 'gym-key'
-                REPO_URL = 'https://github.com/your-username/gym-static-website.git'
+                REPO_URL = 'https://github.com/rohi-del/gym-static-website.git'
                 BRANCH = 'main'
                 REMOTE_USER = 'ubuntu'
                 REMOTE_PATH = '/var/www/html'
@@ -18,10 +18,8 @@ pipeline {
                     steps {
                         sshagent(['wrong-credential-id']) {
                             sh """
-                                ssh -o StrictHostKeyChecking=no ${REM
-                                OTE_USER}@${SERVER_IP} 'mkdir -p ${REMOTE_PATH}'
-                                scp -o StrictHostKeyChecking=no -r *
-                                ${REMOTE_USER}@${SERVER_IP}:${REMOTE_PATH}
+                                ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} 'mkdir -p ${REMOTE_PATH}'
+                                scp -o StrictHostKeyChecking=no -r * ${REMOTE_USER}@${SERVER_IP}:${REMOTE_PATH}
                                 """
                                 }
                             }
