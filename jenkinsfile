@@ -29,7 +29,7 @@ pipeline {
                         sshagent([SSH_CREDENTIAL]) {
                         sh """
                             ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} '
-                            sudo systemctl restart nginx'
+                            sudo systemctl restart apache2'
                             """
                            }
                         }
